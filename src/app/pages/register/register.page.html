@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title class="ion-text-center" color="light">
+      TeLlevoApp
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #frmreg="ngForm">
+    <ion-text color="warning" class="ion-text-center">
+      <h1>Registro de usuario</h1>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Rut</ion-label>
+      <ion-input clearInput type="text" placeholder="rut" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Nombre</ion-label>
+      <ion-input clearInput type="text" placeholder="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Apellidos</ion-label>
+      <ion-input clearInput type="text" placeholder="apellidos" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Correo Electronico</ion-label>
+      <ion-input clearInput type="email" placeholder="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Nombre de usuario</ion-label>
+      <ion-input clearInput type="text" placeholder="nombre usuario" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Contraseña</ion-label>
+      <ion-input clearInput type="text" placeholder="contraseña" required></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating" color="primary">Confirmar contraseña</ion-label>
+      <ion-input clearInput type="text" placeholder="Confirm" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="ion-margin-top ion-text-capitalize" href="login">
+      Registrarme
+    </ion-button>
+
+  </form>
+</ion-content>

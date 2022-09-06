@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title class="ion-text-center" color="light">
+      TeLlevoApp
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #frmlog="ngForm" (ngSubmit)="onSumbit()">
+    <ion-text color="warning">
+      <h1 class="ion-text-center" >Inicio de Sesión</h1>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Nombre de usuario</ion-label>
+      <ion-input clearInput [(ngModel)]="usuario.username" name="usuario" type="text" placeholder="Usuario" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Contraseña</ion-label>
+      <ion-input clearInput [(ngModel)]="usuario.password" name="password" type="password" placeholder="Contraseña" required></ion-input>
+    </ion-item>
+    
+    <ion-button type="sumbit" color="primary" expand="block" [disabled]="frmlog.invalid" class="ion-margin-top">
+      Iniciar Sesión
+    </ion-button>
+  </form>
+
+  <ion-button expand="block" class="ion-margin-top ion-text-capitalize" >
+    Olvide mi contraseña
+  </ion-button>
+
+  <ion-text color="warning" class="ion-text-center ion-text">
+    <h4>Unete a nosotros y se parte de esta hermosa comunidad!!!</h4>
+  </ion-text>
+  <ion-button expand="block" class="ion-text-capitalize" href="register">
+    Quiero Registrarme
+  </ion-button>
+
+  <ion-card class="ion-margin-top">
+    <ion-img src="/assets/estudiantes.jpg"></ion-img>
+  </ion-card>
+</ion-content>
