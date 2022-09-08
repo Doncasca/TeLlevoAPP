@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EncabezadoComponent } from './encabezado/encabezado.component';
 import { IonicModule } from '@ionic/angular';
+import { TabsComponent } from './tabs/tabs.component';
 
 
 
 @NgModule({
-  declarations: [EncabezadoComponent],
+  declarations: [TabsComponent],
   imports: [
     CommonModule,
     IonicModule
   ],
-  exports:[EncabezadoComponent],
+  exports:[TabsComponent]
 })
 export class ComponentsModule { }

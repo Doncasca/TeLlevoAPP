@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
   }
 
   onSumbit(){
-    if(this.usuario.username=="jano" && this.usuario.password=="123")
+    if(this.usuario.username=="nes" && this.usuario.password=="123")
     {
       console.log("Usuario valido");
       let navigationExtras: NavigationExtras = {
