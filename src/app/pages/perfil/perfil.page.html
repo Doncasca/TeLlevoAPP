@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button text="Volver" defaultHref="/cuenta" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>TellevoAPP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <ion-text color="warning" class="ion-text-center">
+    <h1>Mi Perfil</h1>
+  </ion-text>
+  <ion-card>
+    <img src="../assets/rocasi.png" />
+    <ion-card-header>
+      <ion-card-title>Nombre: Laroca BlackAdam</ion-card-title>
+      <ion-card-subtitle>Institucion: Duoc Uc</ion-card-subtitle>
+      <ion-card-subtitle>Tipo: Pasajero/Conductor</ion-card-subtitle>
+      <ion-card-subtitle>Carrera: Estudiante de ingenieria en informatica</ion-card-subtitle>
+      <ion-card-subtitle>Jornada: Diurna/Vespertina</ion-card-subtitle>
+      <ion-button routerLink="/editar-perfil" color="tertiary" expand="block" shape="round" class="ion-margin-top ion-text-capitalize" >
+        Editar Perfil
+      </ion-button>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

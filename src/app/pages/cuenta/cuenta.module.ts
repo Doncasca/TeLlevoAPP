@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { CuentaPageRoutingModule } from './cuenta-routing.module';
-
+import { ComponentsModule } from '../../components/components.module';
 import { CuentaPage } from './cuenta.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { CuentaPage } from './cuenta.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CuentaPageRoutingModule
+    CuentaPageRoutingModule,
+    ComponentsModule,
   ],
   declarations: [CuentaPage]
 })

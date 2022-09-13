@@ -1,9 +1,71 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>cuenta</ion-title>
+  <ion-toolbar color="tertiary" >
+    <ion-title>TellevoAPP</ion-title>
+    <ion-buttons class="boton" routerLink="/perfil" slot="end">
+      <ion-icon class="iconos" size="large" name="person-circle-outline"></ion-icon>Perfil
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="4">
+        <ion-card>
+          <ion-icon size="large" routerLink="/ayuda" name="help-circle-sharp"></ion-icon>
+          <h1>Ayuda</h1>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-icon size="large" name="card-sharp"></ion-icon>
+          <h1>Pago</h1>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card type="button" routerLink="/historialviajes">
+          <ion-icon size="large" name="time-sharp"></ion-icon>
+          <h1>Viajes</h1>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+<ion-list>
+  <ion-item lines="none" routerLink="/soporte">
+    <ion-icon name="help-buoy-sharp"></ion-icon>
+    <ion-row>
+      <ion-col size="2">
+      </ion-col>
+      <ion-col size="12">
+        <h1>Soporte</h1>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+  <ion-item lines="none" routerLink="/configuracion">
+    <ion-icon size="large" name="settings-sharp"></ion-icon>
+    <ion-row>
+      <ion-col size="2">
+      </ion-col>
+      <ion-col size="12">
+        <h1>Configuracion</h1>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+  <ion-item lines="none" routerLink="/homecon">
+    <ion-icon size="large" name="car-sport-sharp"></ion-icon>
+    <ion-row>
+      <ion-col size="2">
+      </ion-col>
+      <ion-col size="12">
+        <h1>Gana volviendo a tu casa!</h1>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+
+  <h6 class="ion-padding">V0.1</h6>
+</ion-list>
+
+
 
 </ion-content>
+<app-tabs></app-tabs>

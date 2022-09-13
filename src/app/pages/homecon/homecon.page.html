@@ -1,0 +1,43 @@
+<ion-content class="ion-padding">
+
+  <h1>Bienvenido, nes</h1>
+  <div class="container"><iframe class="" class="responsive-iframe"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6390.126423008361!2d-73.06449253432953!3d-36.79303479434022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b4503c9a1735%3A0x3fc32996839e6986!2sDuoc%20UC%3A%20Sede%20San%20Andr%C3%A9s%20De%20Concepci%C3%B3n!5e0!3m2!1ses-419!2scl!4v1662608822028!5m2!1ses-419!2scl"
+      frameborder="0" allowfullscreen=""></iframe>
+  </div>
+  <br>
+  <ion-card class="ion-padding">
+    <form #frmlog="ngForm" (ngSubmit)="onSumbit()">
+      <br>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Destino</ion-label>
+        <ion-input  name="usuario" type="text" placeholder="" required></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating" >Cantidad de personas</ion-label>
+        <ion-input  name="password" type="password" placeholder="" required></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating" >Costo por persona</ion-label>
+        <ion-input  name="password" type="password" placeholder="" required></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating" >Comentario/preferencia</ion-label>
+        <ion-input  name="password" type="password" placeholder="" ></ion-input>
+      </ion-item>
+      <br>
+      <div class="center">
+        <ion-button class="centrar" color="tertiary" [disabled]="frmlog.invalid" routerLink="/inicioviaje">Programar Viaje</ion-button>
+      </div>
+      <br>
+    </form>
+  </ion-card>
+  
+
+</ion-content>
+
+<app-tabs></app-tabs>

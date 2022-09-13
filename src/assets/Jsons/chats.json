@@ -1,0 +1,64 @@
+{
+    "data": [
+        {
+            "name": "Luke Skywalker",
+            "state": "Online",
+            "description": "Hey cuando puedes hacer el mismo viaje?",
+            "image": "luke.png"
+        },
+        {
+            "name": "C-3PO",
+            "state": "Offline",
+            "description": "turituriruru piperi bu bubuaua",
+            "image": "C3PO.png"
+        },
+        {
+            "name": "R2-D2",
+            "state": "Online",
+            "description": "turituriruru piperi bu bubuaua",
+            "image": "ArtooTFA2.png"
+        },
+        {
+            "name": "Darth Vader",
+            "state": "Offline",
+            "description": "Cada vez mas cerca de matarte",
+            "image": "darthvader.png"
+        },
+        {
+            "name": "Leia Organa",
+            "state": "Online",
+            "description": "Oye que dias tienes clases?",
+            "image": "leia.png"
+        },
+        {
+            "name": "Leia Organa",
+            "state": "Online",
+            "description": "Oye que dias tienes clases?",
+            "image": "leia.png"
+        },
+        {
+            "name": "Leia Organa",
+            "state": "Online",
+            "description": "Oye que dias tienes clases?",
+            "image": "leia.png"
+        },
+        {
+            "name": "Leia Organa",
+            "state": "Online",
+            "description": "Oye que dias tienes clases?",
+            "image": "leia.png"
+        },
+        {
+            "name": "Leia Organa",
+            "state": "Online",
+            "description": "Oye que dias tienes clases?",
+            "image": "leia.png"
+        },
+        {
+            "name": "Leia Organa",
+            "state": "Online",
+            "description": "Oye que dias tienes clases?",
+            "image": "leia.png"
+        }
+    ]
+}

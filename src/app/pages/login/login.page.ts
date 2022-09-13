@@ -30,8 +30,16 @@ export class LoginPage implements OnInit {
           }
         };
         this.router.navigate(['/home'],navigationExtras);
-    }
-    else{
+    }else if(this.usuario.username=="vale" && this.usuario.password=="123")
+    {
+      console.log("Usuario valido");
+      let navigationExtras: NavigationExtras = {
+        state: {
+          usr: this.usuario
+          }
+        };
+        this.router.navigate(['/homecon'],navigationExtras);
+    }else{
       console.log("Acceso denegado");
       this.presentAlert();
     }

@@ -1,0 +1,59 @@
+{
+    "data": [
+        {
+            "name": "Luke Skywalker",
+            "description": "★★★★★",
+            "comentario":"Muy comodo",
+            "image": "luke.png"
+        },
+        {
+            "name": "C-3PO",
+            "description": "★★★★★",
+            "comentario":"pipiripiri bu babupipirirpi",
+            "image": "C3PO.png"
+        },
+        {
+            "name": "R2-D2",
+            "state": "Online",
+            "description": "★★★★★",
+            "comentario":"pipiripiri bu babupipirirpi",
+            "image": "ArtooTFA2.png"
+        },
+        {
+            "name": "Darth Vader",
+            "description": "★☆☆☆☆",
+            "comentario":"Que se muera",
+            "image": "darthvader.png"
+        },
+        {
+            "name": "Leia Organa",
+            "description": "★★★★★",
+            "comentario":"Buen viaje, buena voluntad",
+            "image": "leia.png"
+        },
+        {
+            "name": "Leia Organa",
+            "description": "★★★★★",
+            "comentario":"Buen viaje, buena voluntad",
+            "image": "leia.png"
+        },
+        {
+            "name": "Leia Organa",
+            "description": "★★★★★",
+            "comentario":"Buen viaje, buena voluntad",
+            "image": "leia.png"
+        },
+        {
+            "name": "Leia Organa",
+            "description": "★★★★★",
+            "comentario":"Buen viaje, buena voluntad",
+            "image": "leia.png"
+        },
+        {
+            "name": "Leia Organa",
+            "description": "★★★★★",
+            "comentario":"Buen viaje, buena voluntad",
+            "image": "leia.png"
+        }
+    ]
+}

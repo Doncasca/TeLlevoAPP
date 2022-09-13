@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button text="Volver" defaultHref="/cuenta" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>TellevoAPP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-text color="warning" class="ion-text-center">
+      <h1>Historial de viajes</h1>
+    </ion-text>
+    <ion-list>
+      <ion-item *ngFor="let user of users">
+        <ion-avatar slot="start">
+          <img src="../../assets/imgstarwars/{{user.image}}">
+        </ion-avatar>
+        <ion-label>
+          <h2 class="colorBlue">{{user.name}}</h2>
+          <p>{{user.description}}</p>
+          <p>{{user.comentario}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

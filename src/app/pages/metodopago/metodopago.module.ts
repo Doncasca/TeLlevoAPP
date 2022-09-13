@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DetalleviajePageRoutingModule } from './detalleviaje-routing.module';
+import { MetodopagoPageRoutingModule } from './metodopago-routing.module';
 
-import { DetalleviajePage } from './detalleviaje.page';
+import { MetodopagoPage } from './metodopago.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DetalleviajePageRoutingModule
+    MetodopagoPageRoutingModule
   ],
-  declarations: [DetalleviajePage]
+  declarations: [MetodopagoPage]
 })
-export class DetalleviajePageModule {}
+export class MetodopagoPageModule {}

@@ -2,15 +2,15 @@
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom" color="tertiary">
-        <ion-tab-button href="home">
+        <ion-tab-button (click)="onClickchat()">
+          <ion-icon name="mail-unread-sharp"></ion-icon>
+          <ion-label>Chats</ion-label>
+        </ion-tab-button>
+        <ion-tab-button (click)="onClickhome()">
           <ion-icon name="home"></ion-icon>
           <ion-label>Inicio</ion-label>
         </ion-tab-button>
-        <ion-tab-button href="actividad">
-          <ion-icon name="clipboard-sharp"></ion-icon>
-          <ion-label>Actividad</ion-label>
-        </ion-tab-button>
-        <ion-tab-button href="cuenta">
+        <ion-tab-button (click)="onClickcuenta()">
           <ion-icon name="person-sharp"></ion-icon>
           <ion-label>Cuenta</ion-label>
         </ion-tab-button>

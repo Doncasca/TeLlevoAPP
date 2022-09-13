@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },  {
+  },
+  {
     path: 'inf-usuario',
     loadChildren: () => import('./pages/inf-usuario/inf-usuario.module').then( m => m.InfUsuarioPageModule)
   },
@@ -35,10 +36,41 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inicioviaje/inicioviaje.module').then( m => m.InicioviajePageModule)
   },
   {
-    path: 'detalleviaje',
-    loadChildren: () => import('./pages/detalleviaje/detalleviaje.module').then( m => m.DetalleviajePageModule)
+    path: 'chats',
+    loadChildren: () => import('./pages/chats/chats.module').then( m => m.ChatsPageModule)
   },
-
+  {
+    path: 'configuracion',
+    loadChildren: () => import('./pages/configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
+  },
+  {
+    path: 'historialviajes',
+    loadChildren: () => import('./pages/historialviajes/historialviajes.module').then( m => m.HistorialviajesPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+  {
+    path: 'ayuda',
+    loadChildren: () => import('./pages/ayuda/ayuda.module').then( m => m.AyudaPageModule)
+  },
+  {
+    path: 'soporte',
+    loadChildren: () => import('./pages/soporte/soporte.module').then( m => m.SoportePageModule)
+  },
+  {
+    path: 'recuperarpass',
+    loadChildren: () => import('./pages/recuperarpass/recuperarpass.module').then( m => m.RecuperarpassPageModule)
+  },
+  {
+    path: 'homecon',
+    loadChildren: () => import('./pages/homecon/homecon.module').then( m => m.HomeconPageModule)
+  },
+  {
+    path: 'metodopago',
+    loadChildren: () => import('./pages/metodopago/metodopago.module').then( m => m.MetodopagoPageModule)
+  },
 ];
 
 @NgModule({

@@ -10,29 +10,28 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form #frmreg="ngForm">
+  <form #frmreg="ngForm" (ngSubmit)="onSumbit()">
     <ion-text color="warning" class="ion-text-center">
       <h1>Registro de usuario</h1>
     </ion-text>
     <br>
     <ion-item>
       <ion-label position="floating" >Nombre de usuario</ion-label>
-      <ion-input clearInput type="text" required></ion-input>
+      <ion-input [(ngModel)]="usuario.username" name="usuario"  clearInput type="text" required></ion-input>
     </ion-item>
     <br>
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input clearInput type="text" required></ion-input>
+      <ion-input [(ngModel)]="usuario.password" name="password"  clearInput type="text" required></ion-input>
     </ion-item>
     
     <ion-item>
       <ion-label position="floating">Confirmar contraseña</ion-label>
-      <ion-input clearInput type="text" required></ion-input>
+      <ion-input [(ngModel)]="usuario.password2" name="password2"  clearInput type="text" required></ion-input>
     </ion-item>
     <br>
-    <ion-button expand="block" color="warning" class="ion-margin-top ion-text-capitalize" href="inf-usuario">
+    <ion-button type="submit" expand="block" color="warning" [disabled]="frmreg.invalid" class="ion-margin-top ion-text-capitalize">
       Registrar usuario
     </ion-button>
-
   </form>
 </ion-content>
