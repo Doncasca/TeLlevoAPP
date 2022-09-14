@@ -71,6 +71,22 @@ const routes: Routes = [
     path: 'metodopago',
     loadChildren: () => import('./pages/metodopago/metodopago.module').then( m => m.MetodopagoPageModule)
   },
+  {
+    path: 'agregartar',
+    loadChildren: () => import('./pages/agregartar/agregartar.module').then( m => m.AgregartarPageModule)
+  },
+  {
+    path: 'detalleviaje',
+    loadChildren: () => import('./pages/detalleviaje/detalleviaje.module').then( m => m.DetalleviajePageModule)
+  },
+  {
+    path: 'seguimientoviaje',
+    loadChildren: () => import('./pages/seguimientoviaje/seguimientoviaje.module').then( m => m.SeguimientoviajePageModule)
+  },
+  {
+    path: 'seguimientoviajecon',
+    loadChildren: () => import('./pages/seguimientoviajecon/seguimientoviajecon.module').then( m => m.SeguimientoviajeconPageModule)
+  },
 ];
 
 @NgModule({

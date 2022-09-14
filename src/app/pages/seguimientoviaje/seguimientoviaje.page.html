@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button text="Volver" defaultHref="/detalleviaje" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>TellevoAPP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-text class="ion-text-center" color="dark">
+    <h1>Seguimiento del viaje</h1>
+  </ion-text>
+  <ion-card>
+    <ion-img src="/assets/uber-viaje.jpg"></ion-img>
+    <ion-item lines="none">
+      <ion-text position="floating">Tiempo estimado: 10m</ion-text>
+    </ion-item>
+  </ion-card>
+  <ion-card>
+    <ion-item lines="none">
+      <ion-text position="floating">Destino: Rio laja 6111</ion-text>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text position="floating">Patente: VHRL66</ion-text>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text position="floating">Costo estimado: $1000</ion-text>
+    </ion-item>
+    <ion-item lines="none">  
+      <ion-label>Compartir Viaje</ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+  </ion-card>
+
+  <ion-button (click)="onSumbit()" color="tertiary" expand="block">
+    Cancelar viaje
+  </ion-button>
+</ion-content>

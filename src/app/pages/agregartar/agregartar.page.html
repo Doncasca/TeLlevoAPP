@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button text="Volver" defaultHref="/metodopago" mode="ios"></ion-back-button>
+    </ion-buttons>
+    <ion-title>TellevoAPP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card  class="ion-padding">
+    <form #frmcreartarj="ngForm" (ngSubmit)="onSumbit()">
+
+    <ion-label class="ion-margin-start">Numero de tarjeta</ion-label>
+    <ion-card>
+      <ion-item lines="none">
+      <ion-icon slot="start" name="card-outline"></ion-icon>
+      <ion-input clearInput  maxlength="16" type="number" placeholder="" required></ion-input>
+    </ion-item>
+    </ion-card>
+    
+    <ion-row>
+      <ion-col size="7">
+        <ion-label class="ion-margin-start">Fecha de vto.</ion-label>
+        <ion-card>
+          <ion-item lines="none">
+          <ion-input size="small" type="date" placeholder="" required></ion-input>
+        </ion-item>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="5">
+        <ion-label class="ion-margin-start">CVV</ion-label>
+        <ion-card>
+          <ion-item lines="none">
+          <ion-input clearInput maxlength="3" type="number" placeholder="" required></ion-input>
+        </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-label class="ion-margin-start">Sobrenombre (opcional)</ion-label>
+    <ion-card>
+      <ion-item lines="none">
+      <ion-input clearInputtype="text"></ion-input>
+    </ion-item>
+    </ion-card>
+    <ion-button routerLink="/metodopago" expand="block" color="tertiary">
+      Agregar tarjeta
+    </ion-button>
+
+  </form>
+  </ion-card>
+  
+
+</ion-content>
