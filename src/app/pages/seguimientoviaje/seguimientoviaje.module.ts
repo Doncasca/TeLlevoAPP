@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { SeguimientoviajePageRoutingModule } from './seguimientoviaje-routing.module';
-
+import { ComponentsModule } from '../../components/components.module';
 import { SeguimientoviajePage } from './seguimientoviaje.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { SeguimientoviajePage } from './seguimientoviaje.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    SeguimientoviajePageRoutingModule
+    SeguimientoviajePageRoutingModule,
+    ComponentsModule,
   ],
   declarations: [SeguimientoviajePage]
 })

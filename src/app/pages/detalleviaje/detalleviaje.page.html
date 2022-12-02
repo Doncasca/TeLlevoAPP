@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
-      <ion-back-button text="Volver" defaultHref="/chats" mode="ios"></ion-back-button>
+      <ion-back-button text="Volver" defaultHref="/home" mode="ios"></ion-back-button>
     </ion-buttons>
     <ion-title>TellevoAPP</ion-title>
   </ion-toolbar>
@@ -11,47 +11,49 @@
   <ion-text class="ion-text-center" color="dark">
     <h1>Detalle del viaje</h1>
   </ion-text>
-  <ion-card>
     <br>
     <ion-item lines="none">
-      <ion-text position="floating">Destino: Rio laja 6111</ion-text>
+      <ion-label color="tertiary" class="ion-text-center bolded">Informacion del viaje</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text position="floating" class="bolded">Conductor: {{usuario.nombre}}</ion-text>
     </ion-item>
     <br>
     <ion-item lines="none">
-      <ion-text position="floating">Cantidad de personas: 3</ion-text>
+      <ion-text position="floating" class="bolded">Destino: {{viaje.destino}}</ion-text>
     </ion-item>
     <br>
     <ion-item lines="none">
-      <ion-text position="floating">Costo por persona: $1000</ion-text>
+      <ion-text position="floating" class="bolded">Cantidad de personas: {{viaje.cantidadpsj}}</ion-text>
     </ion-item>
     <br>
     <ion-item lines="none">
-      <ion-text position="floating">Comentario/preferencia: Pago preferentemente con tarjetas</ion-text>
-    </ion-item>
-    <br>
-  </ion-card>
-  <ion-text class="ion-text-center" color="dark">
-    <h1>Detalle del vehiculo</h1>
-  </ion-text>
-  <ion-card>
-    <ion-item lines="none">
-      <ion-text position="floating">Patente: VHRL66</ion-text>
+      <ion-text position="floating" class="bolded">Costo por persona: {{viaje.costo}}</ion-text>
     </ion-item>
     <br>
     <ion-item lines="none">
-      <ion-text position="floating">Marca: Nissan</ion-text>
+      <ion-text position="floating" class="bolded">Hora de salida: {{viaje.horasalida}}</ion-text>
     </ion-item>
     <br>
     <ion-item lines="none">
-      <ion-text position="floating">Modelo: V16</ion-text>
+      <ion-text position="floating" class="bolded">Comentario/preferencia: {{viaje.comentario}}</ion-text>
     </ion-item>
     <br>
     <ion-item lines="none">
-      <ion-img src="/assets/nissan.jpg"></ion-img>
+      <ion-label color="tertiary" class="ion-text-center bolded">Informacion del vehiculo</ion-label>
     </ion-item>
-  </ion-card>
-  <br>
-  <ion-button color="tertiary"  routerLink="/seguimientoviaje" expand="block" >
-    Iniciar viaje
-  </ion-button>
+    <ion-item lines="none">
+      <ion-text position="floating" class="bolded">Patente: {{viaje.patente}}</ion-text>
+    </ion-item>
+    <br>
+    <ion-item lines="none">
+      <ion-text position="floating" class="bolded">Marca: {{vehiculo.marca}}</ion-text>
+    </ion-item>
+    <br>
+    <ion-item lines="none">
+      <ion-text position="floating" class="bolded">Modelo: {{vehiculo.modelo}}</ion-text>
+    </ion-item>
+    <ion-button color="tertiary" class="ion-padding ion-margin-bottom" [routerLink]="['/seguimientoviaje',viaje.id]" (click)="reservarviaje()" expand="block" >
+      Reservar viaje
+    </ion-button>
 </ion-content>

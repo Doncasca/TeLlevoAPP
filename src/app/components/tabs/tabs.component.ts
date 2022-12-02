@@ -18,12 +18,12 @@ export class TabsComponent implements OnInit {
     };
     this.router.navigate(['/home'],navigationExtras);
   }
-  onClickchat(){
+  onClickhistorial(){
     let navigationExtras: NavigationExtras = {
       state: {
         }
     };
-    this.router.navigate(['/chats'],navigationExtras);
+    this.router.navigate(['/historialviajes'],navigationExtras);
   }
   onClickcuenta(){
     let navigationExtras: NavigationExtras = {

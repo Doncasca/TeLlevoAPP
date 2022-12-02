@@ -10,28 +10,78 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form #frmreg="ngForm" (ngSubmit)="onSumbit()">
-    <ion-text color="warning" class="ion-text-center">
-      <h1>Registro de usuario</h1>
-    </ion-text>
+  <form #formregistro="ngForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-text color="warning" class="ion-text-center">
+        <h1>Registro de usuario</h1>
+      </ion-text>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Nombre de usuario</ion-label>
+        <ion-input [(ngModel)]="usuario.username" name="usuario" clearInput type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="usuario.password" name="password" clearInput type="password" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="usuario.nombre" name="nombre" clearInput type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input [(ngModel)]="usuario.apellido" name="apellido" clearInput type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input [(ngModel)]="usuario.correo" name="correo" email="" clearInput type="email" required></ion-input>
+        <ion-note slot="helper">Ingrese un correo valido</ion-note>
+        <ion-note slot="error">Correo invalido</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Numero</ion-label>
+        <ion-input [(ngModel)]="usuario.numero" name="numero" minlength="9" maxlength="9" clearInput type="tel" required></ion-input>
+        <ion-note slot="helper">Ingrese un numero valido</ion-note>
+        <ion-note slot="error">Numero invalido</ion-note>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="check">
+      <ion-text color="warning" class="ion-text-center">
+        <h1>Registro de vehiculo</h1>
+      </ion-text>
+      <ion-item>
+        <ion-label position="floating">Patente:</ion-label>
+        <ion-input [(ngModel)]="vehiculo.patente" name="patente" minlength="6" maxlength="6" clearInput type="text" required></ion-input>
+        <ion-note slot="helper">Ingrese una patente valida</ion-note>
+        <ion-note slot="error">Patente invalida</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Marca:</ion-label>
+        <ion-input [(ngModel)]="vehiculo.marca" name="marca" clearInput type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Modelo:</ion-label>
+        <ion-input [(ngModel)]="vehiculo.modelo" name="modelo" clearInput type="text" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Año:</ion-label>
+        <ion-input [(ngModel)]="vehiculo.anio" name="anio" clearInput type="text" max="2022" min="1960" [minlength]="4" [maxlength]="4" required></ion-input>
+        <ion-note slot="helper">Ingrese un año valido</ion-note>
+        <ion-note slot="error">Año invalido</ion-note>
+      </ion-item>
+    </ion-list>
     <br>
-    <ion-item>
-      <ion-label position="floating" >Nombre de usuario</ion-label>
-      <ion-input [(ngModel)]="usuario.username" name="usuario"  clearInput type="text" required></ion-input>
-    </ion-item>
     <br>
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [(ngModel)]="usuario.password" name="password"  clearInput type="password" required></ion-input>
-    </ion-item>
-    
-    <ion-item>
-      <ion-label position="floating">Confirmar contraseña</ion-label>
-      <ion-input [(ngModel)]="usuario.password2" name="password2"  clearInput type="password" required></ion-input>
-    </ion-item>
-    <br>
-    <ion-button type="submit" expand="block" color="warning" [disabled]="frmreg.invalid" class="ion-margin-top ion-text-capitalize">
+    <ion-button type="submit" expand="block" color="warning" [disabled]="formregistro.invalid"
+      class="ion-margin-top ion-text-capitalize">
       Registrar usuario
     </ion-button>
   </form>
+  <br>
+  <ion-item lines="none">
+    <ion-text color="tertiary">
+      <h5>Tengo un vehiculo</h5>
+    </ion-text>
+    <ion-checkbox [(ngModel)]="check" (ionChange)="updateCheck()" slot="end" color="tertiary"></ion-checkbox>
+  </ion-item>
 </ion-content>

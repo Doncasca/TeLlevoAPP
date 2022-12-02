@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-perfil',
@@ -8,7 +9,14 @@ import { MenuController } from '@ionic/angular';
 })
 export class PerfilPage implements OnInit {
 
-  constructor(private menu:MenuController) { }
+  infrusuario={
+    nombre: '', //key
+    apellido: '',
+    correo: '',
+    numero: '',
+  }
+
+  constructor(private menu:MenuController,private storage:Storage) { }
 
   ngOnInit() {
   }

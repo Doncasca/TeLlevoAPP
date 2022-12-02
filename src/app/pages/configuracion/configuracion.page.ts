@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-configuracion',
@@ -8,7 +10,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class ConfiguracionPage implements OnInit {
 
-  constructor(private menu:MenuController) { }
+  constructor(private menu:MenuController,private router:Router,private storage:Storage) { }
 
   ngOnInit() {
   }
@@ -17,4 +19,5 @@ export class ConfiguracionPage implements OnInit {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
+
 }

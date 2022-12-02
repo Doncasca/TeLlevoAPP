@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-seguimientoviaje',
@@ -8,30 +10,121 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./seguimientoviaje.page.scss'],
 })
 export class SeguimientoviajePage implements OnInit {
+  id: any;
+  viajes=[];
+  viaje = {
+    id:'viajeactivo ', //key
+    username: '', //foreing key
+    destino: '', //form
+    cantidadpsj: null,  //form
+    costo: null,  //form
+    hora: '',  //automatico
+    comentario: '', //form
+    estado: true,  //true, cambia al finalizar el viaje
+    pasajeros: null,
+    horasalida: '',
+    patente: '',
+  }
+  viaje2 = {
+    id:'viajeactivo ', //key
+    username: '', //foreing key
+    destino: '', //form
+    cantidadpsj: null,  //form
+    costo: null,  //form
+    hora: '',  //automatico
+    comentario: '', //form
+    estado: true,  //true, cambia al finalizar el viaje
+    pasajeros: null,
+    horasalida: '',
+    patente: '',
+  }
+  pasajeros=[];
+  pasajero={
+    username:'',
+    nombre: '',
+    numero: '',
+    estadoalerta: true,
+  }
+  constructor(private activatedRoute:ActivatedRoute, private alertController:AlertController,private storage:Storage,private router:Router) {}
 
-  constructor(private router:Router, private alertController:AlertController) {}
+  ionViewDidEnter() {
+    this.id =this.activatedRoute.snapshot.paramMap.get("id");
+    this.mostrarviaje();
+  }
+
+  ngOnInit() {
+  }
+
 
   onSumbit(){
     this.presentAlert();
-    let navigationExtras: NavigationExtras = {
-      state: {
+  }
 
+  async mostrarviaje(){
+    let key= 'viajes';
+    let keyviajeactivo =this.id; 
+    this.viajes=await this.storage.get(key);
+    
+    if(this.viajes!=null){
+      for (let index = 0; index < this.viajes.length; index++) {
+        const element = this.viajes[index];
+        if(element.id==keyviajeactivo){
+          this.viaje=element;
+          if(element.pasajeros==null){
+            this.router.navigate(['/home']);
+          }
         }
-      };
-      this.router.navigate(['/home'],navigationExtras);
+      }
+    }
+  }
+
+  async eliminarpasajero(){
+    let key= 'viajes';
+    let keyusuario= await this.storage.get('sesion');
+    this.viajes=await this.storage.get(key)
+    for (let index = 0; index < this.viajes.length; index++) {
+      this.viaje = this.viajes[index];
+      this.pasajeros=this.viaje.pasajeros;
+      if(this.pasajeros!=null){//viaje que tiene pasajero
+        for (let ind = 0; ind < this.pasajeros.length; ind++) {//lee los usuarios
+          const elementpasajero = this.pasajeros[ind];
+          if(elementpasajero.username==keyusuario){//si el usuario de la lista coincide con el del array lo elimina
+            this.pasajero=elementpasajero;
+            if(this.pasajeros.length<=1){
+              this.viajes[index].pasajeros=null;
+              await this.storage.set(key,this.viajes);
+              this.router.navigate(['/home']);
+            }else{
+              this.viajes[index].pasajeros.splice(ind,1);
+              await this.storage.set(key,this.viajes);
+              console.log(this.viajes);
+              this.router.navigate(['/home']);
+            }
+          }
+        }
+      }else{
+        //no se escuentran viajes con pasajeros
+      }
+    }
     
   }
+
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Viaje cancelado',
+      header: 'Desea eliminar la reserva del viaje?',
       subHeader: '',
       message: '',
       buttons: [
         {
-          text: 'Ok',
+          text: 'No',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
+          },
+        },{
+          text: 'Si',
+          role: 'aceptar',
+          handler: () => {
+            this.eliminarpasajero();
           },
         },
       ],
@@ -41,7 +134,7 @@ export class SeguimientoviajePage implements OnInit {
     //depende de un async para funcionar el await, ser disparado
     await alert.present();
   }
-  ngOnInit() {
-  }
+
+
 
 }

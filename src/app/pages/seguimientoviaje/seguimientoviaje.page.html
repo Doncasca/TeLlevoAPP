@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
-      <ion-back-button text="Volver" defaultHref="/detalleviaje" mode="ios"></ion-back-button>
+      <ion-back-button text="Volver" defaultHref="/home" [routerLink]="['/home']" mode="ios"></ion-back-button>
     </ion-buttons>
     <ion-title>TellevoAPP</ion-title>
   </ion-toolbar>
@@ -18,22 +18,27 @@
     </ion-item>
   </ion-card>
   <ion-card>
+    <ion-card-title *ngIf="viaje.estado==true" class="ion-padding-top ion-text-center">Viaje en curso</ion-card-title>
     <ion-item lines="none">
-      <ion-text position="floating">Destino: Rio laja 6111</ion-text>
+      <ion-text position="floating">Destino: {{viaje.destino}}</ion-text>
     </ion-item>
     <ion-item lines="none">
-      <ion-text position="floating">Patente: VHRL66</ion-text>
+      <ion-text position="floating">Patente: {{viaje.patente}}</ion-text>
     </ion-item>
     <ion-item lines="none">
-      <ion-text position="floating">Costo estimado: $1000</ion-text>
+      <ion-text position="floating">Costo estimado: {{'$'+viaje.costo}}</ion-text>
     </ion-item>
-    <ion-item lines="none">  
-      <ion-label>Compartir Viaje</ion-label>
-      <ion-toggle></ion-toggle>
+    <ion-item lines="none">
+      <ion-text position="floating">Maximo de pasajeros: {{viaje.cantidadpsj}}</ion-text>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text position="floating">Comentario: {{viaje.comentario}}</ion-text>
     </ion-item>
   </ion-card>
 
-  <ion-button (click)="onSumbit()" color="tertiary" expand="block">
+  <ion-button (click)="onSumbit()" *ngIf="viaje.estado==false" color="tertiary" expand="block">
     Cancelar viaje
   </ion-button>
 </ion-content>
+
+<app-tabs></app-tabs>

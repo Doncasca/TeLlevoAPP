@@ -10,40 +10,36 @@
 <ion-content class="ion-padding">
   <ion-text color="dark">
     <h3 class="ion-text-center">¿Olvidaste tu contraseña?</h3>
-    <h3 class="ion-text-center">No te preocupes...</h3>
   </ion-text>
 
-  <form #frmcpass="ngForm" (ngSubmit)="onSumbit()">
+  <form #frmcpass="ngForm" class="ion-text-center" (ngSubmit)="onSumbit()">
     <ion-item class="ion-margin-top">
-      <ion-label position="floating">Correo electronico</ion-label>
-      <ion-input [(ngModel)]="recuperacion.rcemail" name="email" type="email" placeholder="email"></ion-input>
+      <ion-label position="floating">Ingrese su nombre de usuario</ion-label>
+      <ion-input [(ngModel)]="recuperacion.username" name="usuario" type="text" placeholder="username" required></ion-input>
     </ion-item>
-    <ion-button [disabled]="frmcpass.invalid" type="submit" color="tertiary" expand="block" class="ion-margin-top ion-text-capitalize">
-      Enviar codigo de recuperacion
-    </ion-button>
-    
     <ion-item class="ion-margin-top">
-      <ion-label position="floating">Numero de celular</ion-label>
-      <ion-input [(ngModel)]="recuperacion.rcnumber" name="number" type="numeric" placeholder="numero"></ion-input>
+      <ion-label position="floating">Ingrese su contraseña</ion-label>
+      <ion-input [(ngModel)]="recuperacion.pass" name="pass" type="password" placeholder="password" required></ion-input>
     </ion-item>
-    <ion-button [disabled]="frmcpass.invalid" type="submit" color="tertiary" expand="block" class="ion-margin-top ion-text-capitalize">
-      Enviar codigo de recuperacion
-    </ion-button>
-
     <ion-item class="ion-margin-top">
-      <ion-label position="floating">Pregunta de seguridad</ion-label>
-      <ion-input [(ngModel)]="recuperacion.rcsecquestion" name="secquestion" type="text" placeholder="Responder"></ion-input>
+      <ion-label position="floating">Ingrese la nueva contraseña</ion-label>
+      <ion-input [(ngModel)]="recuperacion.password1" name="password1" type="password" placeholder="password" required>
+      </ion-input>
+    </ion-item>
+    <ion-item class="ion-margin-top">
+      <ion-label position="floating">Ingrese nuevamente la nueva contraseña</ion-label>
+      <ion-input [(ngModel)]="recuperacion.password2" name="password2" type="password" placeholder="password" required>
+      </ion-input>
     </ion-item>
     <ion-button [disabled]="frmcpass.invalid" type="submit" color="tertiary" class="ion-margin-top ion-text-capitalize">
-      Enviar respuesta
+      Cambiar contraseña
     </ion-button>
-
-    <ion-text color="dark" class="ion-margin-top">
-      <h5 class="ion-text-center">¿No posees ninguna de estas opciones?</h5>
-      <h5 class="ion-text-center">Contactate con soporte a traves del siguiente correo:</h5>
-    </ion-text>
-    <ion-text color="warning">
-      <h5 class="ion-text-center">tellevoapp@support.cl</h5>
-    </ion-text>
   </form>
+  <ion-text color="dark" class="ion-margin-top">
+    <h5 class="ion-text-center">¿No posees ninguna de estas opciones?</h5>
+    <h5 class="ion-text-center">Contactate con soporte a traves del siguiente correo:</h5>
+  </ion-text>
+  <ion-text color="warning">
+    <h5 class="ion-text-center">tellevoapp@support.cl</h5>
+  </ion-text>
 </ion-content>

@@ -1,96 +1,159 @@
-<ion-content class="ion-padding">
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>TellevoAPP</ion-title>
+    <ion-buttons class="ion-margin-horizontal" routerLink="/perfil" slot="end">
+      <ion-icon class="iconos" size="large" name="person-circle-outline"></ion-icon>{{nombrusr}}
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-  <h1>Bienvenido, nes</h1>
-  <div class="container"><iframe class="responsive-iframe"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6390.126423008361!2d-73.06449253432953!3d-36.79303479434022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b4503c9a1735%3A0x3fc32996839e6986!2sDuoc%20UC%3A%20Sede%20San%20Andr%C3%A9s%20De%20Concepci%C3%B3n!5e0!3m2!1ses-419!2scl!4v1662608822028!5m2!1ses-419!2scl"
-      frameborder="0" allowfullscreen=""></iframe>
+<ion-content>  
+  <div class="container" *ngIf="tipousuario==false"><!-- mapa pasajero-->
+    <iframe class="responsive-iframe"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6390.126423008361!2d-73.06449253432953!3d-36.79303479434022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b4503c9a1735%3A0x3fc32996839e6986!2sDuoc%20UC%3A%20Sede%20San%20Andr%C3%A9s%20De%20Concepci%C3%B3n!5e0!3m2!1ses-419!2scl!4v1662608822028!5m2!1ses-419!2scl"
+    frameborder="0" allowfullscreen="">
+    </iframe>
   </div>
-  <ion-col size="12">
-  </ion-col>
-
-  <ion-item>
-    <ion-input [(ngModel)]="viaje.destino" expand="block" name="buscar_ida" type="text" placeholder=" ¿A donde vas?"
-      required>
-      <ion-icon name="search-sharp"></ion-icon>
-      <ion-col size="1"></ion-col>
-    </ion-input>
-    <ion-button type="submit" fill="clean">
-      <ion-icon size="small" name="chevron-forward-sharp"></ion-icon>
-    </ion-button>
-  </ion-item>
+  <div class="container" *ngIf="tipousuario==true && viajecreado==true"><!-- mapa conductor con viaje creado-->
+    <iframe class="responsive-iframe"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6390.126423008361!2d-73.06449253432953!3d-36.79303479434022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b4503c9a1735%3A0x3fc32996839e6986!2sDuoc%20UC%3A%20Sede%20San%20Andr%C3%A9s%20De%20Concepci%C3%B3n!5e0!3m2!1ses-419!2scl!4v1662608822028!5m2!1ses-419!2scl"
+    frameborder="0" allowfullscreen="">
+    </iframe>
+  </div>
   <br>
-  <ion-button (click)="onSumbit()" color="tertiary" expand="block">
-    Buscar viaje
-  </ion-button>
-  <ion-list>
-    <ion-item type="button" routerLink="/detalleviaje">
+  <ion-card class="ion-padding" *ngIf="tipousuario==true"><!-- conductor -->
+    <ion-list class="slide-in-left" *ngIf="viajecreado==true"><!-- ir a seguimiento -->
+      <ion-card-header>
+        <ion-card-title *ngIf="viaje.estado==false">Viaje en espera...</ion-card-title>
+        <ion-card-title *ngIf="viaje.estado==true">Viaje activo</ion-card-title>
+      </ion-card-header>
+      <ion-item lines="none">
+        <ion-text position="floating">Destino: {{viaje.destino}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating">Patente: {{viaje.patente}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating">Costo estimado: {{'$'+viaje.costo}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating">Maximo de pasajeros: {{viaje.cantidadpsj}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating" type="">Hora de salida: {{viaje.horasalida}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating">Comentario: {{viaje.comentario}}</ion-text>
+      </ion-item>
       <br>
-      <ion-grid fixed>
-        <ion-row>
-          <ion-col size="2">
-            <ion-icon name="location-sharp"></ion-icon>
-          </ion-col>
-          <ion-col size="8">
-            <ion-label>Transportes Jota Ewert</ion-label>
-            <ion-label>Lincoyan 1425,Concepcion,Bio bio</ion-label>
-          </ion-col>
-          <ion-col size="2">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-icon name="chevron-forward-sharp"></ion-icon>
-    </ion-item>
-    <ion-item type="button" href="detalleviaje">
+      <ion-button routerLink="/seguimientoviajecon" class="ion-padding" color="tertiary" expand="block">
+        Ir a seguimiento
+      </ion-button>
       <br>
-      <ion-grid fixed>
-        <ion-row>
-          <ion-col size="2">
-            <ion-icon name="location-sharp"></ion-icon>
-          </ion-col>
-          <ion-col size="8">
-            <ion-label>Transportes Jota Ewert</ion-label>
-            <ion-label>Lincoyan 1425,Concepcion,Bio bio</ion-label>
-          </ion-col>
-          <ion-col size="2">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-icon name="chevron-forward-sharp"></ion-icon>
-    </ion-item>
-    <ion-item type="button" href="detalleviaje">
+    </ion-list><!-- ir a seguimiento -->
+    <form class="ion-text-center slide-in-left" #frmvia="ngForm" *ngIf="viajecreado==false" (ngSubmit)="guardarviaje()"> <!-- formulario crear viaje -->
+      <ion-text class="ion-text-center" color="dark">
+        <h1>Programar viaje</h1>
+      </ion-text>
+      <ion-item>
+        <ion-label position="floating">Destino</ion-label>
+        <ion-input clearInput [(ngModel)]="viaje.destino" name="destino" type="text" placeholder="Ciudad/sector destino"
+          required>
+        </ion-input>
+      </ion-item>
       <br>
-      <ion-grid fixed>
-        <ion-row>
-          <ion-col size="2">
-            <ion-icon name="location-sharp"></ion-icon>
-          </ion-col>
-          <ion-col size="8">
-            <ion-label>Transportes Jota Ewert</ion-label>
-            <ion-label>Lincoyan 1425,Concepcion,Bio bio</ion-label>
-          </ion-col>
-          <ion-col size="2">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-icon name="chevron-forward-sharp"></ion-icon>
-    </ion-item>
-    <ion-item type="button" href="detalleviaje">
+      <ion-item>
+        <ion-label position="floating">Cantidad de personas</ion-label>
+        <ion-input clearInput [(ngModel)]="viaje.cantidadpsj" name="cantidadper" type="number"
+          placeholder="Rango: 1-4 pasajeros" required>
+        </ion-input>
+      </ion-item>
       <br>
-      <ion-grid fixed>
-        <ion-row>
-          <ion-col size="2">
-            <ion-icon name="location-sharp"></ion-icon>
-          </ion-col>
-          <ion-col size="8">
-            <ion-label>Transportes Jota Ewert</ion-label>
-            <ion-label>Lincoyan 1425,Concepcion,Bio bio</ion-label>
-          </ion-col>
-          <ion-col size="2">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-icon name="chevron-forward-sharp"></ion-icon>
-    </ion-item>
-  </ion-list>
+      <ion-item>
+        <ion-label position="floating">Costo por persona</ion-label>
+        <ion-input clearInput [(ngModel)]="viaje.costo" name="costoporp" type="number" placeholder="Rango: $500-$5000"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Hora de salida</ion-label>
+        <ion-input clearInput [(ngModel)]="viaje.horasalida" name="horasalida" type="time" placeholder="0" required>
+        </ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Comentario/preferencia</ion-label>
+        <ion-input clearInput [(ngModel)]="viaje.comentario" name="comentario" type="text" placeholder=""></ion-input>
+      </ion-item>
+      <br>
+      <div class="center">
+        <ion-button class="centrar" color="tertiary" type="submit" [disabled]="frmvia.invalid">Crear viaje</ion-button>
+      </div>
+      <br>
+    </form><!-- formulario crear viaje -->
+  </ion-card>
+  <ion-card lines="none" *ngIf="tipousuario==false"><!-- pasajero -->
+    <ion-list class="slide-in-left" *ngIf="viajeactivo==true"><!-- ir a seguimiento -->
+      <br>
+      <ion-card-title class="ion-text-center">Viaje activo</ion-card-title>
+      <ion-item lines="none">
+        <ion-text position="floating">Destino: {{viaje.destino}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating">Patente: {{viaje.patente}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating">Costo estimado: {{'$'+viaje.costo}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating">Maximo de pasajeros: {{viaje.cantidadpsj}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating" type="">Hora de salida: {{viaje.horasalida}}</ion-text>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text position="floating">Comentario: {{viaje.comentario}}</ion-text>
+      </ion-item>
+      <br>
+      <ion-button [routerLink]="['/seguimientoviaje',viaje.id]" class="ion-padding" color="tertiary" expand="block">
+        Ir a seguimiento
+      </ion-button>
+      <br>
+    </ion-list>
+    <ion-list class="ion-padding" *ngIf="viajeactivo==false"><!-- buscando viaje -->
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      <ion-button (click)="buscarviajes()" color="tertiary" expand="block" class="ion-text-capitalize">
+        Solicitar vehiculo
+      </ion-button>
+      <ion-text color="tertiary" class="ion-text-center ion-text-capitalize">
+        <h1>Viajes encontrados</h1>
+      </ion-text>
+      <ion-item>
+        <ion-input [(ngModel)]="viaje.destino" expand="block" name="buscar_ida" type="text" placeholder=" ¿A donde vas?"
+          required>
+          <ion-icon name="search-sharp"></ion-icon>
+          <ion-col size="1"></ion-col>
+        </ion-input>
+        <ion-button type="submit" fill="clean">
+          <ion-icon size="small" name="chevron-forward-sharp"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-card *ngFor="let item of coleccion" class="scale-in-center">
+        <ion-item lines="none" mode="ios" type="button" [routerLink]="['/detalleviaje',item.id]"
+          class="animate__animated animate__lightSpeedInRight">
+          <ion-label class="bolded" size="large">Destino: {{item.destino}}</ion-label>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+  </ion-card>
+  <div class="container" *ngIf="tipousuario==true && viajecreado==false"><!-- mapa conductor con formulario-->
+    <iframe class="responsive-iframe"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6390.126423008361!2d-73.06449253432953!3d-36.79303479434022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b4503c9a1735%3A0x3fc32996839e6986!2sDuoc%20UC%3A%20Sede%20San%20Andr%C3%A9s%20De%20Concepci%C3%B3n!5e0!3m2!1ses-419!2scl!4v1662608822028!5m2!1ses-419!2scl"
+    frameborder="0" allowfullscreen="">
+    </iframe>
+  </div>
 </ion-content>
+
 <app-tabs></app-tabs>
