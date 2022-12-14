@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { FireService } from 'src/app/services/fire.service';
 
 @Component({
   selector: 'app-seguimientoviajecon',
@@ -71,7 +72,7 @@ export class SeguimientoviajeconPage implements OnInit {
   coleccion = [];
   viajes = [];
 
-  constructor(private router: Router, private alertController: AlertController, private storage: Storage) { }
+  constructor(private router: Router, private alertController: AlertController, private storage: Storage,private fire:FireService) { }
 
   ionViewDidEnter() {
     this.updatecheck();
@@ -295,7 +296,9 @@ export class SeguimientoviajeconPage implements OnInit {
       if (this.historiales==null){
         this.historial.id = 1;
         this.historiales=[this.historial];
-        await this.storage.set('historial', this.historiales)
+        await this.storage.set('historial', this.historiales);
+        let histoid=this.historial.id.toString();
+        this.fire.createDoc('historial',histoid,this.historial);
       }else{
         for (let index = 0; index < this.historiales.length; index++) {
           const element = this.historiales[index];
@@ -303,9 +306,13 @@ export class SeguimientoviajeconPage implements OnInit {
         }
         this.historiales.push(this.historial);
         await this.storage.set('historial', this.historiales)
+        let histoid=this.historial.id.toString();
+        this.fire.createDoc('historial',histoid,this.historial);
         this.router.navigate(['/home']);
       }
-      await this.storage.remove(key);
+      this.viajes=[];
+      await this.storage.set(key,this.viajes);
+      this.fire.deleteDoc('viajes',keyviajeactivo);
       this.router.navigate(['/home']);
     } else {
       for (let index = 0; index < this.viajes.length; index++) {
@@ -326,17 +333,22 @@ export class SeguimientoviajeconPage implements OnInit {
             this.historial.id = 1;
             this.historiales=[this.historial];
             await this.storage.set('historial', this.historiales)
+            let histoid=this.historial.id.toString();
+            this.fire.createDoc('historial',histoid,this.historial);
           }else{
             for (let index = 0; index < this.historiales.length; index++) {
               const element = this.historiales[index];
               this.historial.id= element.id +1;
             }
             this.historiales.push(this.historial);
-            await this.storage.set('historial', this.historiales)
+            await this.storage.set('historial', this.historiales);
+            let histoid=this.historial.id.toString();
+            this.fire.createDoc('historial',histoid,this.historial);
             this.router.navigate(['/home']);
           }
           this.viajes.splice(index, 1);
           await this.storage.set(key, this.viajes);
+          this.fire.deleteDoc('viajes',this.viaje.id);
           this.router.navigate(['/home']);
         } else {
           variable = true;

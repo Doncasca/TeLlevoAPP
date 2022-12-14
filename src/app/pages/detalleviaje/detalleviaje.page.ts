@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
+import { FireService } from 'src/app/services/fire.service';
 
 @Component({
   selector: 'app-detalleviaje',
@@ -50,8 +51,9 @@ export class DetalleviajePage implements OnInit {
 
   viajes=[];
   pasajeros=[];
+  fireveh:any;
 
-  constructor(private activatedRoute:ActivatedRoute,private storage:Storage,private router:Router) { }
+  constructor(private activatedRoute:ActivatedRoute,private storage:Storage,private router:Router,private fire:FireService) { }
 
   ionViewDidEnter() {
     this.id =this.activatedRoute.snapshot.paramMap.get("id");
@@ -70,8 +72,10 @@ export class DetalleviajePage implements OnInit {
       const element = this.viajes[index];
       if(element.id==this.id){
         this.viaje=element;
-        this.usuario=await this.storage.get(this.viaje.username);
-        this.vehiculo=await this.storage.get(this.viaje.patente);
+        this.fire.readDoc('vehiculos',this.viaje.patente).subscribe(r=>{this.fireveh=r});
+        setTimeout(() => {
+          this.vehiculo=this.fireveh;
+        }, 2000);
         if(this.viaje.pasajeros!=null){
           this.pasajeros=this.viaje.pasajeros
           if(this.viaje.cantidadpsj==this.pasajeros.length){
@@ -113,6 +117,7 @@ export class DetalleviajePage implements OnInit {
           this.viajes[index]=this.viaje;
           await this.storage.set(key,this.viajes);
         }
+        this.fire.updateDoc('viajes',this.viaje.id,this.viaje);
       }
     }
   }

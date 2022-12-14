@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { FireService } from 'src/app/services/fire.service';
 
 
 
@@ -78,7 +79,9 @@ export class HomePage implements OnInit {
     estadoalerta: true,
   }
 
-  constructor(private storage: Storage, private alertController: AlertController, private router: Router) {
+  fireveh:any;
+  
+  constructor(private storage: Storage, private alertController: AlertController, private router: Router,private fire:FireService) {
   }
 
   //PASAJERO
@@ -166,7 +169,7 @@ export class HomePage implements OnInit {
               this.viajeactivo = false;
             }
           }
-        }
+        }else{this.viajeactivo=false;}
       }
     }
   }
@@ -234,7 +237,6 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
-
   //CONDUCTOR
   ionViewDidEnter() {
     this.router.navigate(['/home']);
@@ -290,29 +292,7 @@ export class HomePage implements OnInit {
     this.viaje.id = 'viajeactivo ';
     let viaje = this.viaje.id + await this.storage.get('sesion');
     this.usuario = await this.storage.get(await this.storage.get('sesion'));
-    let existe = await this.storage.get(key);
-    if (existe == null) {
-      if (this.viaje.cantidadpsj >= 1 && this.viaje.cantidadpsj <= 4) {
-        if (this.viaje.costo >= 500 && this.viaje.costo <= 5000) {
-          this.viaje.username = await this.storage.get('sesion');
-          this.viaje.hora = '' + date.getHours() + ':' + date.getMinutes();
-          this.viaje.estado = false;
-          this.viaje.id = viaje;
-          this.viaje.patente = this.usuario.patente;
-          this.viajes = [this.viaje];
-          await this.storage.set(key, this.viajes)
-          this.viaje = this.viaje2;
-          this.viajes = [];
-          this.usuario = this.usuario2;
-          this.viajecreadoalert();
-        } else {
-          this.costoincorrecto();
-        }
-      } else {
-        this.pasajerosinc();
-      }
-    } else {
-      this.viajes = await this.storage.get(key);
+    this.viajes = await this.storage.get(key);
       for (let index = 0; index < this.viajes.length; index++) {
         const element = this.viajes[index];
         if (element.id == viaje) {
@@ -329,6 +309,7 @@ export class HomePage implements OnInit {
             this.viaje.patente = this.usuario.patente;
             this.viajes.push(this.viaje);
             await this.storage.set(key, this.viajes)
+            this.fire.createDoc('viajes',this.viaje.id,this.viaje);
             this.viaje = this.viaje2;
             this.viajes = [];
             this.usuario = this.usuario2;
@@ -340,9 +321,10 @@ export class HomePage implements OnInit {
           this.pasajerosinc();
         }
       } else { this.viajeexistente(); }
+      
       //si hay error porque el array existe es porque hay que verificar si el viaje del usuario existe en el array
 
-    }
+    
   }
   //alertas
   async viajecreadoalert() {

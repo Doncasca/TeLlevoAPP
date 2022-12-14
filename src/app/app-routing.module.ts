@@ -22,23 +22,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'actividad',
-    loadChildren: () => import('./pages/actividad/actividad.module').then( m => m.ActividadPageModule),
-    canActivate:[AutorizarGuard]
-  },
-  {
     path: 'cuenta',
     loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule),
-    canActivate:[AutorizarGuard]
-  },
-  {
-    path: 'inicioviaje',
-    loadChildren: () => import('./pages/inicioviaje/inicioviaje.module').then( m => m.InicioviajePageModule),
-    canActivate:[AutorizarGuard]
-  },
-  {
-    path: 'chats',
-    loadChildren: () => import('./pages/chats/chats.module').then( m => m.ChatsPageModule),
     canActivate:[AutorizarGuard]
   },
   {
@@ -71,21 +56,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/recuperarpass/recuperarpass.module').then( m => m.RecuperarpassPageModule)
   },
   {
-    path: 'homecon',
-    loadChildren: () => import('./pages/homecon/homecon.module').then( m => m.HomeconPageModule),
-    canActivate:[AutorizarGuard]
-  },
-  {
-    path: 'metodopago',
-    loadChildren: () => import('./pages/metodopago/metodopago.module').then( m => m.MetodopagoPageModule),
-    canActivate:[AutorizarGuard]
-  },
-  {
-    path: 'agregartar',
-    loadChildren: () => import('./pages/agregartar/agregartar.module').then( m => m.AgregartarPageModule),
-    canActivate:[AutorizarGuard]
-  },
-  {
     path: 'detalleviaje/:id',
     loadChildren: () => import('./pages/detalleviaje/detalleviaje.module').then( m => m.DetalleviajePageModule),
     canActivate:[AutorizarGuard]
@@ -103,16 +73,6 @@ const routes: Routes = [
   {
     path: 'splash',
     loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
-  },
-  {
-    path: 'cuentacon',
-    loadChildren: () => import('./pages/cuentacon/cuentacon.module').then( m => m.CuentaconPageModule),
-    canActivate:[AutorizarGuard]
-  },
-  {
-    path: 'chatscon',
-    loadChildren: () => import('./pages/chatscon/chatscon.module').then( m => m.ChatsconPageModule),
-    canActivate:[AutorizarGuard]
   },
 ];
 

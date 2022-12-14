@@ -3,6 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { AlertController } from '@ionic/angular';
 import { Usuario } from 'src/app/interfaces/usuario';
+import { FireService } from 'src/app/services/fire.service';
 
 @Component({
   selector: 'app-cuenta',
@@ -10,7 +11,7 @@ import { Usuario } from 'src/app/interfaces/usuario';
   styleUrls: ['./cuenta.page.scss'],
 })
 export class CuentaPage implements OnInit {
-  tipousuario: boolean = true;
+  tipousuario: boolean = false;
   nombrusr: String = '';
   usuario: Usuario = {
     username: '', //key
@@ -23,10 +24,11 @@ export class CuentaPage implements OnInit {
     patente: '',//foreing key
   }
 
-  constructor(private router:Router,private storage:Storage,private alertController:AlertController) { }
+  constructor(private router:Router,private storage:Storage,private alertController:AlertController, private fire:FireService) { }
 
   ionViewWillEnter(){
     this.nombreusr();
+    this.tipusu();
   }
 
   ngOnInit() {
@@ -38,6 +40,19 @@ export class CuentaPage implements OnInit {
     
   }
 
+  async tipusu(){
+    let usr:any;
+    usr=await this.storage.get('sesion');
+    this.usuario=await this.storage.get(usr);
+    if (this.usuario.vehiculo==true){
+      this.tipousuario=true;
+    }else{
+      if(this.usuario.patente==""){
+      }else{
+        this.tipousuario=false;
+      }
+    }
+  }
 
   validarusu(){
     this.cambiartipusu();
@@ -63,6 +78,7 @@ export class CuentaPage implements OnInit {
       }
     }
     await this.storage.set(usr,this.usuario);
+    this.fire.updateDoc('usuarios',usr,this.usuario);
   }
 
   async nombreusr() {
@@ -70,6 +86,10 @@ export class CuentaPage implements OnInit {
   }
 
   async cerrar(){
+    let nomusr = await this.storage.get('sesion');
+    await this.storage.remove(nomusr);
+    await this.storage.remove('viajes');
+    await this.storage.remove('historial');
     await this.storage.set('sesion',null);
   }
 

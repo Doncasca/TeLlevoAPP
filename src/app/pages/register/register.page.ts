@@ -4,10 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 //importar interfaz usuario
 import { Usuario } from 'src/app/interfaces/usuario';
-//storage
-import { Storage } from '@ionic/storage-angular';
 //fire
-
 import { FireService } from 'src/app/services/fire.service';
 
 
@@ -39,15 +36,16 @@ export class RegisterPage implements OnInit {
   }
 
   check: boolean = false;
+  fireusr:any;
+  firepat:any;
 
-
-  constructor(private storage: Storage, private router: Router, private alertController: AlertController, private fire:FireService) { }
+  constructor(private router: Router, private alertController: AlertController, private fire:FireService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    this.guardar();
+    this.comprobarinfofire();
   }
 
   updateCheck() {
@@ -67,39 +65,49 @@ export class RegisterPage implements OnInit {
     }
   }
 
-  async guardar() {
-    let usr = await this.storage.get(this.usuario.username);
-    if (usr == null) {
-      if (this.check) {
-        let patente=await this.storage.get(this.vehiculo.patente);
-        if (patente == null) {
-          if(this.comprobaranio()){
-            this.usuario.vehiculo = true;
-            this.usuario.patente= this.vehiculo.patente;
-            this.vehiculo.usuario = this.usuario.username;
-            await this.storage.set(this.usuario.username, this.usuario);
-            await this.storage.set(this.vehiculo.patente, this.vehiculo);
-            this.fire.createDoc('usuarios',this.usuario.username,this.usuario);
-            this.fire.createDoc('vehiculos',this.vehiculo.patente,this.vehiculo);
-            this.usuariocreado();
-            this.router.navigate(['/login']);
-          }else{
-            this.anioinvalido();
-          }
-        } else {
-          this.patenteexiste();
-        }
-      } else {
-        this.fire.createDoc('usuarios',this.usuario.username,this.usuario);
-        await this.storage.set(this.usuario.username, this.usuario);
-        this.usuariocreado();
-        this.router.navigate(['/login']);
-      }
-    } else {
-      this.usuarioexistente();
+  async guardarpasajero(){
+    this.fire.createDoc('usuarios',this.usuario.username,this.usuario);
+    this.usuariocreado();
+    this.router.navigate(['/login']);
+  }
+
+  async guardarconductor(){
+    if(this.comprobaranio()){
+      this.usuario.vehiculo = true;
+      this.usuario.patente= this.vehiculo.patente;
+      this.vehiculo.usuario = this.usuario.username;
+      this.fire.createDoc('usuarios',this.usuario.username,this.usuario);
+      this.fire.createDoc('vehiculos',this.vehiculo.patente,this.vehiculo);
+      this.usuariocreado();
+      this.router.navigate(['/login']);
+    }else{
+      this.anioinvalido();
     }
   }
 
+  async comprobarinfofire() {
+    this.fire.readDoc('usuarios',this.usuario.username).subscribe(r=>{this.fireusr=r});
+    if(this.check==true){
+      this.fire.readDoc('vehiculos',this.vehiculo.patente).subscribe(r=>{this.firepat=r});
+    }
+    setTimeout(() => {
+      if (this.check==true){
+        if(this.firepat==undefined){
+          this.guardarconductor();
+          }else{
+            this.patenteexiste();
+          }
+      }else{
+        if(this.fireusr==undefined){
+        this.guardarpasajero();
+        }else{
+          this.usuarioexistente();
+        }
+      }
+      
+    }, 2000);
+  }
+//alertas
   async usuarioexistente() {
     const alert = await this.alertController.create({
       animated: true,

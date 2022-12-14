@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { FireService } from 'src/app/services/fire.service';
 
 
 @Component({
@@ -45,7 +46,7 @@ export class SeguimientoviajePage implements OnInit {
     numero: '',
     estadoalerta: true,
   }
-  constructor(private activatedRoute:ActivatedRoute, private alertController:AlertController,private storage:Storage,private router:Router) {}
+  constructor(private activatedRoute:ActivatedRoute, private alertController:AlertController,private storage:Storage,private router:Router,private fire:FireService) {}
 
   ionViewDidEnter() {
     this.id =this.activatedRoute.snapshot.paramMap.get("id");
@@ -92,12 +93,15 @@ export class SeguimientoviajePage implements OnInit {
             this.pasajero=elementpasajero;
             if(this.pasajeros.length<=1){
               this.viajes[index].pasajeros=null;
+              this.viaje=this.viajes[index];
               await this.storage.set(key,this.viajes);
+              this.fire.updateDoc('viajes',this.viaje.id,this.viaje);
               this.router.navigate(['/home']);
             }else{
               this.viajes[index].pasajeros.splice(ind,1);
+              this.viaje=this.viajes[index];
               await this.storage.set(key,this.viajes);
-              console.log(this.viajes);
+              this.fire.updateDoc('viajes',this.viaje.id,this.viaje);
               this.router.navigate(['/home']);
             }
           }

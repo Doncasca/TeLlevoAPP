@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { FireService } from '../../services/fire.service';
 
 @Component({
   selector: 'app-recuperarpass',
@@ -21,7 +22,9 @@ export class RecuperarpassPage implements OnInit {
     patente: '',//foreing key
   }
 
-  constructor(private router: Router, private alertController: AlertController, private storage: Storage) { }
+  fireusr:any;
+
+  constructor(private router: Router, private alertController: AlertController, private storage: Storage, private fire:FireService) { }
   ngOnInit() {
   }
 
@@ -32,7 +35,9 @@ export class RecuperarpassPage implements OnInit {
     password2: '',
   }
   async onSumbit() {
-    let usr = await this.storage.get(this.recuperacion.username);
+    this.fire.readDoc('usuarios',this.recuperacion.username).subscribe(r=>{this.fireusr=r});
+    setTimeout(() => {
+      let usr = this.fireusr;
     if (usr != null) {
       this.usuario = usr;
       if (this.usuario.username == this.recuperacion.username && this.usuario.password == this.recuperacion.pass) {
@@ -42,7 +47,7 @@ export class RecuperarpassPage implements OnInit {
           } else {
             this.usuario.password = this.recuperacion.password1;
             this.updtatepass();
-            await this.storage.set(this.usuario.username, this.usuario);
+            this.fire.updateDoc('usuarios',this.recuperacion.username,this.usuario);
           }
         } else {
           this.passnocoinc();
@@ -53,6 +58,8 @@ export class RecuperarpassPage implements OnInit {
     } else {
       this.nfound();
     }
+    }, 2000);
+    
   }
 
   //alertas
